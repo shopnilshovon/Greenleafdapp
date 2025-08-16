@@ -1,5 +1,6 @@
 import { Home, Gift, Gamepad2, BarChart3, Map, Coins } from "lucide-react";
 
+// Sidebar Navigation Items
 export const navItems = [
   { label: "Dashboard", href: "/", icon: Home },
   { label: "Staking", href: "/staking", icon: Coins },

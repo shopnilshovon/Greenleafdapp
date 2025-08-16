@@ -31,10 +31,12 @@ export function Sidebar() {
           "md:translate-x-0"
         )}
       >
+        {/* Logo / Title */}
         <div className="flex items-center justify-between mb-8">
           <h1 className="text-xl font-bold text-green-400">Greenleafdapp</h1>
         </div>
 
+        {/* Navigation Items */}
         <nav className="flex-1 space-y-2">
           {navItems.map((item) => (
             <Link
@@ -46,7 +48,7 @@ export function Sidebar() {
                   ? "bg-green-500 text-black"
                   : "text-zinc-300 hover:bg-zinc-800"
               )}
-              onClick={() => setOpen(false)}
+              onClick={() => setOpen(false)} // mobile এ click করলে sidebar close হবে
             >
               <item.icon size={18} />
               {item.label}
@@ -54,13 +56,29 @@ export function Sidebar() {
           ))}
         </nav>
 
-        {/* Socials */}
+        {/* Social Icons */}
         <div className="mt-auto flex gap-4 justify-center">
-          <a href="https://t.me/yourchannel" target="_blank">
-            <img src="/social/telegram.svg" alt="Telegram" className="w-6 h-6" />
+          <a
+            href="https://t.me/GreenLeafDapp"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img
+              src="/social/telegram.svg"
+              alt="Telegram"
+              className="w-6 h-6"
+            />
           </a>
-          <a href="https://twitter.com/yourprofile" target="_blank">
-            <img src="/social/twitter.svg" alt="Twitter" className="w-6 h-6" />
+          <a
+            href="https://x.com/GreenLeafDApp?t=w_-U2qu-rjmmyR3jFjhR1g&s=09"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img
+              src="/social/twitter.svg"
+              alt="Twitter"
+              className="w-6 h-6"
+            />
           </a>
         </div>
       </motion.aside>

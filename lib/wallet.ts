@@ -1,44 +1,34 @@
 "use client";
 
 import "@rainbow-me/rainbowkit/styles.css";
-import {
-  getDefaultWallets,
-  RainbowKitProvider,
-  darkTheme,
-} from "@rainbow-me/rainbowkit";
-import { configureChains, createConfig, WagmiConfig } from "wagmi";
+import { getDefaultConfig, RainbowKitProvider, darkTheme } from "@rainbow-me/rainbowkit";
+import { WagmiConfig } from "wagmi";
 import { polygon } from "wagmi/chains";
-import { publicProvider } from "wagmi/providers/public";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
-const { chains, publicClient } = configureChains(
-  [polygon],
-  [publicProvider()]
-);
+const queryClient = new QueryClient();
 
-const { connectors } = getDefaultWallets({
+const wagmiConfig = getDefaultConfig({
   appName: "Greenleafdapp",
-  projectId: process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID!, // 🔥 Env থেকে আসছে
-  chains,
-});
-
-export const wagmiConfig = createConfig({
-  autoConnect: true,
-  connectors,
-  publicClient,
+  projectId: process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID!,
+  chains: [polygon],
+  ssr: true,
 });
 
 export function WalletProvider({ children }: { children: React.ReactNode }) {
   return (
     <WagmiConfig config={wagmiConfig}>
-      <RainbowKitProvider
-        chains={chains}
-        theme={darkTheme({
-          accentColor: "#22c55e",
-          accentColorForeground: "#000000",
-        })}
-      >
-        {children}
-      </RainbowKitProvider>
+      <QueryClientProvider client={queryClient}>
+        <RainbowKitProvider
+          chains={[polygon]}
+          theme={darkTheme({
+            accentColor: "#22c55e",
+            borderRadius: "large",
+          })}
+        >
+          {children}
+        </RainbowKitProvider>
+      </QueryClientProvider>
     </WagmiConfig>
   );
 }

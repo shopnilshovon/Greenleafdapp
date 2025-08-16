@@ -1,5 +1,10 @@
 import { ComingSoon } from "@/components/ui/ComingSoon";
+import { PageWrapper } from "@/components/layout/PageWrapper";
 
 export default function TokenomicsPage() {
-  return <ComingSoon title="Tokenomics" />;
+  return (
+    <PageWrapper>
+      <ComingSoon title="Tokenomics" />
+    </PageWrapper>
+  );
 }

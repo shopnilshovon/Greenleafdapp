@@ -1,16 +1,29 @@
 "use client";
 
-import { useState } from "react";
+import { useAccount, useBalance } from "wagmi";
+import { GLF_TOKEN } from "@/lib/tokens";
 
-export function BalanceWidget() {
-  // এখন শুধু ডেমো ব্যালেন্স
-  const [balance] = useState("1250.45");
+export default function BalanceWidget() {
+  const { address } = useAccount();
+
+  const { data, isLoading } = useBalance({
+    address,
+    token: GLF_TOKEN.address as `0x${string}`,
+    watch: true, // রিয়েলটাইম আপডেট
+  });
 
   return (
-    <div className="bg-zinc-900 rounded-xl p-6 shadow-md border border-zinc-800">
-      <h3 className="text-lg font-semibold mb-2">Wallet Balance</h3>
-      <p className="text-3xl font-bold text-green-400">{balance} GLF</p>
-      <p className="text-sm text-zinc-400 mt-1">on Polygon Network</p>
+    <div className="bg-gray-900 p-6 rounded-2xl shadow-md border border-gray-800">
+      <h2 className="text-xl font-bold mb-2">Wallet Balance</h2>
+      {isLoading ? (
+        <p className="text-gray-400">Loading...</p>
+      ) : data ? (
+        <p className="text-green-400 text-2xl font-semibold">
+          {data.formatted} {GLF_TOKEN.symbol}
+        </p>
+      ) : (
+        <p className="text-gray-500">Connect wallet to see balance</p>
+      )}
     </div>
   );
 }

@@ -17,7 +17,7 @@ const { chains, publicClient } = configureChains(
 
 const { connectors } = getDefaultWallets({
   appName: "Greenleafdapp",
-  projectId: "YOUR_WALLETCONNECT_PROJECT_ID", // WalletConnect Project ID
+  projectId: process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID!, // 🔥 Env থেকে আসছে
   chains,
 });
 

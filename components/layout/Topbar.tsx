@@ -1,9 +1,11 @@
-import { WalletConnectButton } from "@/components/wallet/WalletConnectButton";
+"use client";
 
-export function Topbar() {
+import WalletConnectButton from "@/components/wallet/WalletConnectButton";
+
+export default function Topbar() {
   return (
-    <header className="h-14 px-4 border-b border-zinc-800 flex items-center justify-end bg-black">
+    <div className="w-full flex justify-end items-center p-4 bg-gray-900 border-b border-gray-800">
       <WalletConnectButton />
-    </header>
+    </div>
   );
 }

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <circle cx="32" cy="32" r="32" fill="#22c55e"/>
+  <path d="M32 16c-8 0-14 6-14 14 0 6 4 12 10 14v4h8v-4c6-2 10-8 10-14 0-8-6-14-14-14z" fill="white"/>
+  <path d="M28 44h8v4h-8z" fill="white"/>
+  <text x="50%" y="58%" text-anchor="middle" fill="white" font-size="10" font-family="Arial" font-weight="bold">
+    GLF
+  </text>
+</svg>

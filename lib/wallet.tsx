@@ -5,12 +5,16 @@ import {
   RainbowKitProvider,
   getDefaultWallets,
 } from "@rainbow-me/rainbowkit";
-import { configureChains, createConfig, WagmiConfig } from "wagmi";
+import {
+  configureChains,
+  createConfig,
+  WagmiConfig
+} from "wagmi";
 import { polygon } from "wagmi/chains";
 import { publicProvider } from "wagmi/providers/public";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
-const { chains, publicClient } = configureChains(
+const { chains, publicClient, webSocketPublicClient } = configureChains(
   [polygon],
   [publicProvider()]
 );
@@ -25,6 +29,7 @@ const wagmiConfig = createConfig({
   autoConnect: true,
   connectors,
   publicClient,
+  webSocketPublicClient,
 });
 
 const queryClient = new QueryClient();

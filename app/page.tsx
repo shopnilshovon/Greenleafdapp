@@ -1,6 +1,6 @@
-import { BalanceWidget } from "@/components/dashboard/BalanceWidget";
-import { SendTokenForm } from "@/components/dashboard/SendTokenForm";
-import { PageWrapper } from "@/components/layout/PageWrapper";
+import BalanceWidget from "@/components/dashboard/BalanceWidget";
+import SendTokenForm from "@/components/dashboard/SendTokenForm";
+import PageWrapper from "@/components/layout/PageWrapper";
 
 export default function DashboardPage() {
   return (
@@ -14,6 +14,7 @@ export default function DashboardPage() {
           tokens, stake, play games and explore DeFi.
         </p>
 
+        {/* দুইটা উইজেট গ্রিড আকারে */}
         <div className="grid gap-6 md:grid-cols-2">
           <BalanceWidget />
           <SendTokenForm />

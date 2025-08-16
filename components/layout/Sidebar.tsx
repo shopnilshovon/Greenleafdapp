@@ -5,6 +5,7 @@ import { navItems } from "@/data/nav";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
 import { Menu } from "lucide-react";
+import { motion } from "framer-motion";
 
 export function Sidebar() {
   const pathname = usePathname();
@@ -21,10 +22,13 @@ export function Sidebar() {
       </button>
 
       {/* Sidebar */}
-      <aside
+      <motion.aside
+        initial={{ x: -260 }}
+        animate={{ x: open ? 0 : -260 }}
+        transition={{ duration: 0.3 }}
         className={cn(
-          "fixed md:static inset-y-0 left-0 w-64 bg-zinc-900 shadow-lg flex flex-col p-4 transition-transform z-40",
-          open ? "translate-x-0" : "-translate-x-full md:translate-x-0"
+          "fixed md:static inset-y-0 left-0 w-64 bg-zinc-900 shadow-lg flex flex-col p-4 z-40",
+          "md:translate-x-0"
         )}
       >
         <div className="flex items-center justify-between mb-8">
@@ -59,7 +63,7 @@ export function Sidebar() {
             <img src="/social/twitter.svg" alt="Twitter" className="w-6 h-6" />
           </a>
         </div>
-      </aside>
+      </motion.aside>
     </>
   );
 }

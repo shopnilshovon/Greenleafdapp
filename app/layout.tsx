@@ -1,10 +1,11 @@
 import "./globals.css";
-import { Sidebar } from "@/components/layout/Sidebar";
-import { Topbar } from "@/components/layout/Topbar";
+import { WalletProvider } from "@/lib/wallet";
+import Sidebar from "@/components/layout/Sidebar";
+import Topbar from "@/components/layout/Topbar";
 
 export const metadata = {
   title: "Greenleafdapp",
-  description: "Decentralized Finance Dashboard for GLF Token",
+  description: "Decentralized App on Polygon",
 };
 
 export default function RootLayout({
@@ -14,17 +15,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="bg-black text-white">
-        <div className="flex h-screen">
-          {/* Sidebar */}
+      <body className="flex min-h-screen bg-gray-950 text-white">
+        <WalletProvider>
           <Sidebar />
-
-          {/* Main content area */}
-          <div className="flex flex-col flex-1">
+          <div className="flex-1 flex flex-col">
             <Topbar />
-            <main className="flex-1 overflow-y-auto p-4">{children}</main>
+            <main className="flex-1 p-4">{children}</main>
           </div>
-        </div>
+        </WalletProvider>
       </body>
     </html>
   );

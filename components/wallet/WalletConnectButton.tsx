@@ -1,9 +1,13 @@
 "use client";
 
-export function WalletConnectButton() {
+import { ConnectButton } from "@rainbow-me/rainbowkit";
+
+export default function WalletConnectButton() {
   return (
-    <button className="px-4 py-2 bg-green-500 text-black font-semibold rounded-lg shadow hover:bg-green-400 transition">
-      Connect Wallet
-    </button>
+    <ConnectButton
+      accountStatus="address"
+      chainStatus="icon"
+      showBalance={false}
+    />
   );
 }

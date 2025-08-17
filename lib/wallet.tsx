@@ -1,42 +1,24 @@
 "use client";
 
-import "@rainbow-me/rainbowkit/styles.css";
-import {
-  RainbowKitProvider,
-  getDefaultWallets,
-} from "@rainbow-me/rainbowkit";
-import { configureChains, createConfig, WagmiConfig } from "wagmi";
+import { WagmiConfig, configureChains, createConfig } from "wagmi";
 import { polygon } from "wagmi/chains";
 import { publicProvider } from "wagmi/providers/public";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { MetaMaskConnector } from "wagmi/connectors/metaMask";
+import { ReactNode } from "react";
 
+// Polygon + Public RPC provider
 const { chains, publicClient } = configureChains(
   [polygon],
   [publicProvider()]
 );
 
-const { connectors } = getDefaultWallets({
-  appName: "Greenleafdapp",
-  projectId: "fa96915c5b0466eab038790875fcbee6", // WalletConnect project ID
-  chains,
-});
-
+// শুধুমাত্র MetaMask connector
 const wagmiConfig = createConfig({
   autoConnect: true,
-  connectors,
+  connectors: [new MetaMaskConnector({ chains })],
   publicClient,
 });
 
-const queryClient = new QueryClient();
-
-export function WalletProvider({ children }: { children: React.ReactNode }) {
-  return (
-    <WagmiConfig config={wagmiConfig}>
-      <QueryClientProvider client={queryClient}>
-        <RainbowKitProvider chains={chains}>
-          {children}
-        </RainbowKitProvider>
-      </QueryClientProvider>
-    </WagmiConfig>
-  );
+export function WalletProvider({ children }: { children: ReactNode }) {
+  return <WagmiConfig config={wagmiConfig}>{children}</WagmiConfig>;
 }
